@@ -10,7 +10,7 @@
 <body>
 	<%
 		request.setCharacterEncoding("utf-8");
-		String mid = request.getParameter("userID");
+		String mid = request.getParameter("idCheck");
 	
 		String driverName = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/webdb";
@@ -30,15 +30,12 @@
 			
 			rs = stmt.executeQuery(sql);//sql문의 결과 값이 저장(select문이 반환하는 레코드 저장)
 			
-			while(rs.next()) {
-				String db_id =  rs.getString("id");
-				String db_pw =  rs.getString("password");
-				String db_name =  rs.getString("name");
-				String db_email =  rs.getString("email");
-				String db_jointime =  rs.getString("jointime");
-				
-				out.println(db_id + "/" + db_pw + "/" + db_name + "/" + db_email + "/" + db_jointime + "<br>");  
+			if(rs.next()) {
+				out.println("이미 가입된 아이디입니다. 다른 아이디로 진행해주세요.");
+			} else {
+				out.println("가입 가능한 아이디입니다. 계속 진행해주세요.");
 			}
+			
 			if(rs != null) {
 				rs.close();
 			}
