@@ -32,9 +32,11 @@
 			int dbCheck = stmt.executeUpdate(sql);
 			
 			if(dbCheck == 1) {
-				out.println("회원 가입 성공!!");
+				//out.println("회원 가입 성공!!");
+				response.sendRedirect("signupSuccess.jsp");
 			} else {
-				out.println("회원 가입 실패!!");
+				//out.println("회원 가입 실패!!");
+				response.sendRedirect("signup.jsp");
 			}
 			
 			stmt.close();
